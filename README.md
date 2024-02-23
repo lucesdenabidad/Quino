@@ -1,2 +1,4 @@
+⭐ Quino Event Core ⭐
 
-Plugin Template
+Commands:
+  /gamemenu

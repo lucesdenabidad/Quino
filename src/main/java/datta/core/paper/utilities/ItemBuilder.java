@@ -84,8 +84,8 @@ public class ItemBuilder implements Listener {
     public ItemStack buildCustomModelData(int customModelData) {
         ItemStack itemStack = new ItemStack(material);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        setupItemMeta(itemStack, itemMeta);
         itemMeta.setCustomModelData(customModelData);
+        setupItemMeta(itemStack, itemMeta);
         return itemStack;
     }
 

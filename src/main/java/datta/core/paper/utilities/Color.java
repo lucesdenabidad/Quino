@@ -18,9 +18,9 @@ import java.util.regex.Pattern;
 public class Color {
 
 
-    public static boolean checkoutPAPI(String s , JavaPlugin plugin) {
+    public static boolean checkoutPAPI(String s, JavaPlugin plugin) {
         if (plugin.getServer().getPluginManager().getPlugin(s) == null) {
-            plugin.getLogger().warning("No tienes el plugin de '"+s+"' en el servidor. (Dependencia obligatoria)");
+            plugin.getLogger().warning("No tienes el plugin de '" + s + "' en el servidor. (Dependencia obligatoria)");
             plugin.getServer().getPluginManager().disablePlugin(plugin);
             return false;
         }
@@ -191,6 +191,13 @@ public class Color {
         List<String> formatted = new ArrayList<>();
         for (String s : list)
             formatted.add(format(s));
+
+        return formatted;
+    }
+
+    public static List<String> formatList(Player player,String ... list) {
+        List<String> formatted = new ArrayList<>();
+        for (String s : list) formatted.add(format(player, s));
 
         return formatted;
     }

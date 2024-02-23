@@ -1,28 +1,29 @@
 package datta.core.paper.utilities.TCT;
 
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+
 /**
  * Utility Runnable that eases the creation of delayed tasks.
  * 
  * @author jcedeno
  */
-public class DelayTask implements Runnable {
-    private long time;
+public class DelayTask {
+    private static Plugin plugin = null;
+    private int id = -1;
 
-    public DelayTask(long time) {
-        this.time = time;
+    public DelayTask(Plugin instance){
+        this.plugin = instance;
+    }
+    public DelayTask(Runnable runnable){
+        this(0, runnable);
     }
 
-    public static DelayTask of(long milliseconds) {
-        return new DelayTask(milliseconds);
+    public DelayTask(long delay, Runnable runnable){
+       if (plugin.isEnabled()){
+           id = Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, runnable, delay);
+       }else{
+           runnable.run();
+       }
     }
-
-    @Override
-    public void run() {
-        try {
-            Thread.sleep(time);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }
